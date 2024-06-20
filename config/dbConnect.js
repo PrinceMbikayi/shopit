@@ -1,13 +1,8 @@
 import mongoose from "mongoose";
 
 export const connectDatabase = () => {
-
-    let DB_URI = "";
-
-    if(process.env.NODE_ENV === "DEVELOPMENT") DB_URI = process.env.DB_LOCAL_URI;
-    if(process.env.NODE_ENV === "PRODUCTION") DB_URI = process.env.DB_URI;
-   
-    mongoose.connect(DB_URI).then((con) => {
+    const URI = process.env.DB_URI || "mongodb+srv://tabare5935:IMbest01@cluster0.clueweu.mongodb.net/shoppay?retryWrites=true&w=majority&appName=Cluster0";
+    mongoose.connect(process.env.DB_URI).then((con) => {
         console.log(`MongoDB Database connected with HOST: MONGODB_CLOUD`);
     });
 };
