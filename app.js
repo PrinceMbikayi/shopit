@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { connectDatabase } from './config/dbConnect.js';
 import errorMiddleware from './middleware/errors.js';
-
+import cors from 'cors';
 // Handle Unaught exceptions
 process.on('uncaughtException', (err) => {
     console.log(`ERROR: ${err}`);
@@ -18,6 +18,7 @@ dotenv.config();
 // Connecting to the database
 connectDatabase();
 
+app.use(cors());
 app.use(express.json({ 
     limit: "10mb",
     verify: (req, res, buf) => {
