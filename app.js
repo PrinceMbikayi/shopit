@@ -19,6 +19,15 @@ dotenv.config();
 connectDatabase();
 
 app.use(cors());
+
+const corsOptions = {
+    origin: 'http://localhost:3000', // Origine spécifique autorisée
+    credentials: true, // Autoriser l'envoi de cookies
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(express.json({ 
     limit: "10mb",
     verify: (req, res, buf) => {
