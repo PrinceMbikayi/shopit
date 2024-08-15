@@ -35,6 +35,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Augmenter le délai d'attente à 2 minutes (120 000 ms)
+app.use((req, res, next) => {
+    req.setTimeout(120000); // 120 000 ms = 2 minutes
+    next();
+});
+
 
 app.use(express.json({ 
     limit: "10mb",
