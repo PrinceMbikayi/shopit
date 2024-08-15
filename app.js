@@ -26,20 +26,12 @@ dotenv.config();
 // Connecting to the database
 connectDatabase();
 
-app.use(cors());
-
-const corsOptions = {
+app.use(cors({
     origin: 'http://localhost:3000', // Origine spécifique autorisée
     credentials: true, // Autoriser l'envoi de cookies
-};
+}));
 
 app.use(cors(corsOptions));
-
-// Augmenter le délai d'attente à 2 minutes (120 000 ms)
-app.use((req, res, next) => {
-    req.setTimeout(120000); // 120 000 ms = 2 minutes
-    next();
-});
 
 
 app.use(express.json({ 
