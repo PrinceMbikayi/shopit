@@ -26,14 +26,39 @@ dotenv.config();
 // Connecting to the database
 connectDatabase();
 
-app.use(cors({
+// Définir les options CORS
+const corsOptions = {
     origin: 'http://localhost:3000', // Origine spécifique autorisée
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Autoriser l'envoi de cookies
-}));
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
+// Utiliser CORS avec les options définies
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Autoriser les requêtes préflight pour toutes les routes
 
+//app.use(cors());
 
+// Définir des routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+  });
+
+  // Démarrer le serveur
+// const port = process.env.PORT || 4000;
+// app.listen(port, () => {
+//   console.log(`Server running on port ${port}`);
+// });
+
+// app.use(cors({
+//     origin: 'http://localhost:3000', // Origine spécifique autorisée
+//     credentials: true, // Autoriser l'envoi de cookies
+// }));
+
+// app.use(cors(corsOptions));
+
+// Configurer les autres middlewares
 app.use(express.json({ 
     limit: "10mb",
     verify: (req, res, buf) => {
