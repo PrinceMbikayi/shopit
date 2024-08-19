@@ -12,33 +12,5 @@
         "source": "/(.*)",
         "destination": "/"
       }
-    ],
-
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Referrer-Policy",
-            "value": "no-referrer-when-downgrade"
-          },
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "http://localhost:3000"
-          },
-          {
-            "key": "Access-Control-Allow-Methods",
-            "value": "GET, POST, PUT, DELETE, OPTIONS"
-          },
-          {
-            "key": "Access-Control-Allow-Headers",
-            "value": "Content-Type, Authorization"
-          },
-          {
-            "key": "Access-Control-Allow-Credentials",
-            "value": "true"
-          }
-        ]
-      }
     ]
 }
