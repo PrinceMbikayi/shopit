@@ -15,8 +15,12 @@
 
     "headers": [
       {
-        "source": "/(.*)",
+        "source": "./(.*)",
         "headers": [
+          {
+            "key": "Referrer-Policy",
+            "value": "no-referrer-when-downgrade"
+          },
           {
             "key": "Access-Control-Allow-Origin",
             "value": "http://localhost:3000"
