@@ -26,6 +26,11 @@ dotenv.config();
 // Connecting to the database
 connectDatabase();
 
+app.use((req, res, next) => {
+    res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade'); // ou 'origin', 'no-referrer', etc.
+    next();
+});
+
 // Définir les options CORS
 const corsOptions = {
     origin: 'http://localhost:3000', // Origine spécifique autorisée
