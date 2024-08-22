@@ -1,16 +1,16 @@
 import express from 'express';
 
-import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import { connectDatabase } from './config/dbConnect.js';
 import errorMiddleware from './middleware/errors.js';
-import cors from 'cors';
 
 // Import all routes
-import productRoutes from './routes/products.js'
-import authRoutes from './routes/auth.js'
-import orderRoutes from './routes/order.js'
-import paymentRoutes from './routes/payment.js'
+import authRoutes from './routes/auth.js';
+import orderRoutes from './routes/order.js';
+import paymentRoutes from './routes/payment.js';
+import productRoutes from './routes/products.js';
 
 const app = express();
 
@@ -31,13 +31,21 @@ app.use((req, res, next) => {
     next();
 });
 
-// Définir les options CORS
+// // Définir les options CORS
+// const corsOptions = {
+//     origin: 'http://localhost:3000', // Origine spécifique autorisée
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true, // Autoriser l'envoi de cookies
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+
 const corsOptions = {
-    origin: 'http://localhost:3000', // Origine spécifique autorisée
+    origin: true, // Allow access from all origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Autoriser l'envoi de cookies
+    credentials: true, // Allow sending cookies
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
 
 // Utiliser CORS avec les options définies
 app.use(cors(corsOptions));
