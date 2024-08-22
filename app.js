@@ -31,16 +31,16 @@ app.use((req, res, next) => {
     next();
 });
 
-// // Définir les options CORS
-// const corsOptions = {
-//     origin: 'http://localhost:3000', // Origine spécifique autorisée
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true, // Autoriser l'envoi de cookies
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
+// Définir les options CORS
+const allowedOrigins = ['http://localhost:3000', 'https://ritzglobal.net'];
 const corsOptions = {
-    origin: true, // Allow access from all origins
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow sending cookies
     allowedHeaders: ['Content-Type', 'Authorization'],
